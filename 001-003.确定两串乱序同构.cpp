@@ -28,3 +28,23 @@ public:
 };
 
 /*--------code2--------*/
+class Same {
+public:
+    bool checkSam(string stringA, string stringB) {
+        if(stringA.size() != stringB.size()) return false;
+        
+        std::vector<int> vec(256, 0);
+        
+        for(auto&& str : stringA){
+            ++vec[str];
+        }
+        for(auto&& str : stringB){
+            --vec[str];
+            if(vec[str] < 0){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
