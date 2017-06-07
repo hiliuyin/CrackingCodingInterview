@@ -48,3 +48,30 @@ public:
         return true;
     }
 };
+
+/*------code3-----*/
+class Same {
+public:
+    bool checkSam(string stringA, string stringB) {
+        if(stringA.size() != stringB.size()) return false;
+        
+        std::map<char, int> hash;
+        
+        for(auto&& str : stringA){
+            if(hash.find(str) == hash.end()){
+                hash[str] = 1;
+            }else {
+                ++hash[str];
+            }
+            
+        }
+        for(auto&& str : stringB){
+            if(hash.find(str) == hash.end() || hash[str] == 0){
+                return false;
+            }
+            --hash[str];
+        }
+        
+        return true;
+    }
+};
