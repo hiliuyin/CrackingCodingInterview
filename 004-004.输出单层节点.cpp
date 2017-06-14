@@ -65,7 +65,8 @@ public:
         return head.next;
     }
 };
-/*
+
+/* code 2:
 先序遍历
 */
 class TreeLevel {
