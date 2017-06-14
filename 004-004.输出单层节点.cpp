@@ -65,3 +65,45 @@ public:
         return head.next;
     }
 };
+/*
+先序遍历
+*/
+class TreeLevel {
+public:
+    ListNode* getTreeLevel(TreeNode* root, int dep) {
+        if(root == nullptr || dep < 0){
+            return nullptr;
+        }
+        if(dep == 1){
+            return new ListNode(root->val);
+        }
+        
+        std::vector<int> vec;
+        getTreeLevelProxy(vec, root, 1, dep);
+        ListNode result(0);
+        ListNode* pre = &result;
+        for(auto&& val : vec){
+            pre->next = new ListNode(val);
+            pre = pre->next;
+        }
+        return result.next;
+    }
+private:
+    void getTreeLevelProxy(std::vector<int>& vec, TreeNode* root, int level, int dep){
+        if(root == nullptr || level > dep){
+            return ;
+        }
+        
+        if(level == dep){
+            vec.emplace_back(root->val);
+        }
+        else{
+            if(root->left != nullptr){
+                getTreeLevelProxy(vec, root->left, level + 1, dep);
+            }
+            if(root->right != nullptr){
+                getTreeLevelProxy(vec, root->right, level + 1, dep);
+            }
+        }
+    }
+};
