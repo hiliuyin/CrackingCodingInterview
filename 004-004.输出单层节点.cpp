@@ -22,7 +22,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };*/
 
-/*
+/* code1:
 广度优先遍历实现
 */
 class TreeLevel {
