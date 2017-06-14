@@ -49,8 +49,7 @@ public:
             //递归检查右子树
             return checkBSTProxy(root->right, last_val);
         };
-        
-        
+       
         return checkBSTProxy(root, last_val);
     }
 };
