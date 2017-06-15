@@ -21,7 +21,7 @@ struct TreeNode {
 };*/
 
 
-/***Code1:
+/***Code1:*/
 class Successor {
 public:
     int findSucc(TreeNode* root, int p) {
@@ -60,5 +60,35 @@ public:
     }
     
     return -1;
+    }
+};
+
+/***Code2*/
+class Successor {
+public:
+    int findSucc(TreeNode* root, int p) {
+        if(root == nullptr){
+            return -1;
+        }
+        
+        std::function<int(TreeNode*, int, bool&)>
+        findSuccProxy = [&](TreeNode* root, int p, bool& target)->int{
+            if(root == nullptr){
+                return -1;
+            }
+            
+            int left = findSuccProxy(root->left, p, target);
+            if(left != -1){ return left; }
+            if(target){ //一定要放在下一个判断前
+                return root->val;
+            }
+            if(root->val == p){
+                target = true;
+            }            
+            return findSuccProxy(root->right, p, target);
+        };
+        
+        bool target = false;
+        return findSuccProxy(root, p, target);
     }
 };
