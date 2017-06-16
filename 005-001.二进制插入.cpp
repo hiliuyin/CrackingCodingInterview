@@ -19,17 +19,17 @@
 class BinInsert {
 public:
     int binInsert(int n, int m, int j, int i) {
-    //i之前的位均为1
-    int left = 0xFFFF;
-    left = left << (i+1);
-    //j之后的均为1
-    int right = 1;
-    right = right << j;
-    right -= 1;
+        //i之前的位均为1
+        int left = 0xFFFF;
+        left = left << (i+1);
+        //j之后的均为1
+        int right = 1;
+        right = right << j;
+        right -= 1;
 
-    int mask = left | right;
-    n = n & mask;
-    m = m << j;
-    return n|m;
+        int mask = left | right;
+        n = n & mask;
+        m = m << j;
+        return n|m;
     }
 };
