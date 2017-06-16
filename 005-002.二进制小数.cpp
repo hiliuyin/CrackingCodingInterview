@@ -7,8 +7,34 @@
 返回：0.101
 */
 
-
 /**********code1************/
+class BinDecimal {
+public:
+    string printBin(double num) {
+        if(num <= 0 || num >= 1){
+            return "Error";
+        }
+        
+        std::string result("0.");
+        while(num > 0){
+            if(result.size() > 32){
+                return "Error";
+            }
+            double r = num * 2;
+            if(r >= 1){
+                result.append("1");
+                num = r-1;
+            }else{
+                result.append("0");
+                num = r;
+            }
+        }
+        
+        return result;
+    }
+};
+
+/**********code2：better************/
 class BinDecimal {
 public:
     string printBin(double num) {
